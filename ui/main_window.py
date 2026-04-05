@@ -5,10 +5,12 @@ from PyQt6.QtWidgets import (
     QLabel,
     QLineEdit,
     QHBoxLayout,
+    QComboBox,
     QSlider,
     QCheckBox,
     QFileDialog,
 )
+from PyQt6.QtCore import Qt
 from ui.tape_widget import TapeWidget
 
 
@@ -23,7 +25,13 @@ class MainWindow(QWidget):
 
         self.input_box = QLineEdit()
         layout.addWidget(self.input_box)
-
+        # operation selector (Palindrome or Binary Addition)
+        op_row = QHBoxLayout()
+        op_row.addWidget(QLabel("Operation"))
+        self.operation_selector = QComboBox()
+        self.operation_selector.addItems(["Palindrome", "Binary Addition", "Unary Multiplication"]) 
+        op_row.addWidget(self.operation_selector)
+        layout.addLayout(op_row)
         # control row: Start / Play-Pause / Next Step
         controls = QHBoxLayout()
         self.start_button = QPushButton("Start")
@@ -39,7 +47,8 @@ class MainWindow(QWidget):
 
         # second row: speed, debug toggle, export log
         controls2 = QHBoxLayout()
-        self.speed_slider = QSlider()
+        self.speed_slider = QSlider(Qt.Orientation.Horizontal)
+        self.speed_slider.setFixedWidth(220)
         self.speed_slider.setMinimum(50)
         self.speed_slider.setMaximum(2000)
         self.speed_slider.setValue(300)
