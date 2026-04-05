@@ -35,3 +35,20 @@ dist/
 
 # Logs
 *.log
+
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# virtual environments
+venv/
+.env/
+
+# logs
+*.log
+
+# VS Code settings
+.vscode/
